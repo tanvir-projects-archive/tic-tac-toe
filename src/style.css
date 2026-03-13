@@ -143,12 +143,21 @@ h1 {
     align-items: center;
 }
 
+.controls.mode-pvp .dropdown-row {
+    justify-content: flex-end;
+}
+
 .custom-dropdown {
     position: relative;
     flex: 1; /* Both take equal space */
     font-family: 'Lemon Milk', sans-serif;
     user-select: none;
     z-index: 1;
+}
+
+.controls.mode-pvp .custom-dropdown {
+    flex: initial; /* Don't stretch in PVP mode to allow centering */
+    min-width: 160px; /* Ensure a decent minimum width */
 }
 
 .custom-dropdown.open {
@@ -159,6 +168,10 @@ h1 {
 .difficulty-hidden {
     visibility: hidden;
     pointer-events: none;
+}
+
+.controls.mode-pvp .difficulty-hidden {
+    display: none;
 }
 
 
@@ -279,6 +292,10 @@ button:active {
     justify-content: center;
     gap: 1rem;
     margin-top: 0.45rem;
+}
+
+.controls.mode-pvp .button-row {
+    margin-top: 0.15rem; /* Move buttons a bit up */
 }
 
 #reset, #vibration-toggle {

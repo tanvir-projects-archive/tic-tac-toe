@@ -8,6 +8,7 @@ let countdownInterval = null;
 let vibrationEnabled = localStorage.getItem('vibrationEnabled') !== 'false'; // Default to true
 
 // Get references to the HTML elements
+const controlsElement = document.querySelector('.controls');
 const boardElement = document.getElementById('board');
 const resetButton = document.getElementById('reset');
 const vibrationToggle = document.getElementById('vibration-toggle');
@@ -47,8 +48,10 @@ dropdownOptions.forEach(option => {
         // Show/hide difficulty selector
         if (newValue === 'pvc') {
             difficultyDropdown.classList.remove('difficulty-hidden');
+            controlsElement.classList.remove('mode-pvp');
         } else {
             difficultyDropdown.classList.add('difficulty-hidden');
+            controlsElement.classList.add('mode-pvp');
         }
 
         if (mode !== newValue) {
@@ -385,5 +388,8 @@ function resetGame() {
 }
 
 // ── Init ───────────────────────────────────────────────────────────────────────
+if (mode === 'pvp') {
+    controlsElement.classList.add('mode-pvp');
+}
 updateTurnIndicator();
 renderBoard();
