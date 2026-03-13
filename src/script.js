@@ -8,18 +8,47 @@ let countdownInterval = null;
 // Get references to the HTML elements
 const boardElement = document.getElementById('board');
 const resetButton = document.getElementById('reset');
-const modeSelector = document.getElementById('mode');
+// Custom Dropdown Logic
+const dropdown = document.getElementById('mode-dropdown');
+const dropdownSelected = dropdown.querySelector('.dropdown-selected');
+const dropdownOptions = dropdown.querySelectorAll('.dropdown-option');
+const selectedText = document.getElementById('selected-text');
+
 const messageElement = document.getElementById('message');
 const scoreXElement = document.getElementById('score-x');
 const scoreOElement = document.getElementById('score-o');
 const turnIndicator = document.getElementById('turn-indicator');
 
-// Add event listeners
-modeSelector.addEventListener('change', (event) => {
-    mode = event.target.value;
-    scores = { X: 0, O: 0 };
-    updateScoreboard();
-    resetGame();
+dropdownSelected.addEventListener('click', () => {
+    dropdown.classList.toggle('open');
+});
+
+dropdownOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        const newValue = option.getAttribute('data-value');
+        const newText = option.textContent.trim();
+        
+        // Update UI
+        selectedText.textContent = newText;
+        dropdownOptions.forEach(opt => opt.classList.remove('active'));
+        option.classList.add('active');
+        dropdown.classList.remove('open');
+
+        // Apply Mode Change
+        if (mode !== newValue) {
+            mode = newValue;
+            scores = { X: 0, O: 0 };
+            updateScoreboard();
+            resetGame();
+        }
+    });
+});
+
+// Close dropdown on click outside
+window.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+    }
 });
 
 resetButton.addEventListener('click', () => {
