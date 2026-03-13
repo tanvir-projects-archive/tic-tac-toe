@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+@font-face {
+    font-family: 'Lemon Milk';
+    src: url('font/lemon-milk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 :root {
     --primary: #4CAF50;
@@ -18,7 +23,7 @@ body, h1, select, button {
 }
 
 body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Lemon Milk', sans-serif;
     text-align: center;
     height: 100vh;
     margin: 0;
