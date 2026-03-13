@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+:root {
+    --primary: #4CAF50;
+    --primary-hover: #45a049;
+    --text: #333;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
 body, h1, select, button {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Outfit', sans-serif;
     text-align: center;
     height: 100vh;
     margin: 0;
     overflow: hidden;
+    color: var(--text);
 }
 
 .video-background {
@@ -32,75 +44,127 @@ video {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    width: 320px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    width: 360px;
 }
 
 h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 
-label {
-    font-size: 16px;
-    color: #333;
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.score {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    min-width: 80px;
+}
+
+#turn-indicator {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
 }
 
 select {
+    font-family: inherit;
     font-size: 16px;
-    padding: 8px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }
 
 button {
-    padding: 10px 20px;
+    font-family: inherit;
+    padding: 12px 24px;
     font-size: 16px;
-    background-color: #4CAF50;
+    font-weight: 700;
+    background-color: var(--primary);
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     margin-bottom: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 #board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 15px;
+    margin-top: 10px;
 }
 
 .box {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 2px solid #333;
-    font-size: 30px;
-    line-height: 80px;
-    text-align: center;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    font-size: 48px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .box:hover {
-    background-color: rgba(255, 255, 255, 1);
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
+}
+
+.box.winner {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.box span {
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 #message {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 25px;
+    min-height: 1.5em;
 }
+
+.x-color { color: #f44336; }
+.o-color { color: #2196f3; }
+
