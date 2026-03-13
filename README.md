@@ -5,9 +5,13 @@ A simple and interactive Tic Tac Toe game built with HTML, CSS, and JavaScript
 - **Live here:** [Tic Tac Toe](https://tanvir-projects-archive.github.io/tic-tac-toe/)
 
 ## Features
-- **Player vs Player Mode:** Play with a friend on the same device
-- **Player vs Computer Mode:** Play with  the computer
-- **Reset Game:** Easily reset the game with the click of a button
+- **Modern Premium Design:** Clean, uniform glassmorphism UI with a green theme
+- **Game Modes:**
+  - **1 vs 1:** Play with a friend locally
+  - **1 vs Computer:** Challenge our AI (Easy, Medium, Hard modes)
+- **Vibration Feedback:** Haptic feedback on mobile devices for moves and wins (can be toggled)
+- **Score Tracking:** Keep track of wins for both players
+- **PWA Support:** Installable on mobile and desktop
 
 ## Installation
 1. Clone this repository to your local machine:
