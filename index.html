@@ -6,6 +6,8 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" type="image/png" href="src/img/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
 </head>
 <body>
     <div class="video-background">
@@ -31,5 +33,14 @@
     </div>
 
     <script src="src/script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered', reg))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
 </body>
 </html>
