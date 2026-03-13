@@ -177,9 +177,9 @@ h1 {
 
 .dropdown-selected {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0.7rem 1.1rem;
+    padding: 0.7rem 2.5rem; /* Increased side padding for centered text */
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -191,6 +191,7 @@ h1 {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
     white-space: nowrap;
+    position: relative; /* Added for absolute positioning of arrow */
 }
 
 .dropdown-selected:hover {
@@ -201,6 +202,8 @@ h1 {
 }
 
 .dropdown-arrow {
+    position: absolute; /* Changed to absolute */
+    right: 1.1rem; /* Positioned at the right */
     width: 1.2rem;
     height: 1.2rem;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -242,6 +245,7 @@ h1 {
     padding: 0.8rem 1.2rem;
     display: flex;
     align-items: center;
+    justify-content: center; /* Center options content */
     gap: 0.8rem;
     cursor: pointer;
     text-transform: uppercase;
