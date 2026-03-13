@@ -127,23 +127,17 @@ function highlightWinner(combination) {
 function startCountdown() {
     if (countdownInterval) clearInterval(countdownInterval);
     let countdown = 3;
-    messageElement.textContent += ` (Restarting in ${countdown}...)`;
-    
+    // Capture the base message once before the interval starts
+    const baseMsg = messageElement.textContent;
+    messageElement.textContent = `${baseMsg} (Restarting in ${countdown}...)`;
+
     countdownInterval = setInterval(() => {
         countdown--;
-        const baseMsg = gameOver && board.every(c => c !== '') && !document.querySelector('.winner') 
-            ? "It's a Draw!" 
-            : `Player ${board.find(c => c !== '')} Wins!`; // Simple check for winner msg
-            
-        // Regather actual message from DOM if needed or just use state
-        const winner = document.querySelector('.winner');
-        const status = winner ? `Player ${board[Array.from(document.querySelectorAll('.box')).indexOf(winner)]} Wins!` : "It's a Draw!";
-        
-        messageElement.textContent = `${status} (Restarting in ${countdown}...)`;
-
         if (countdown <= 0) {
             clearInterval(countdownInterval);
             resetGame();
+        } else {
+            messageElement.textContent = `${baseMsg} (Restarting in ${countdown}...)`;
         }
     }, 1000);
 }
