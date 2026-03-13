@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tictactoe-v4';
+const CACHE_NAME = 'tictactoe-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -15,9 +15,8 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME).then((cache) => {
       console.log('Service Worker: Caching Assets');
       return cache.addAll(ASSETS);
-    })
+    }).then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
 // Activate Event - Clearing Old Caches
