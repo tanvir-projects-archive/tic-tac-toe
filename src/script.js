@@ -5,10 +5,12 @@ let mode = 'pvp';
 let difficulty = 'medium';
 let scores = { X: 0, O: 0 };
 let countdownInterval = null;
+let vibrationEnabled = localStorage.getItem('vibrationEnabled') !== 'false'; // Default to true
 
 // Get references to the HTML elements
 const boardElement = document.getElementById('board');
 const resetButton = document.getElementById('reset');
+const vibrationToggle = document.getElementById('vibration-toggle');
 
 // Mode Dropdown
 const dropdown = document.getElementById('mode-dropdown');
@@ -89,9 +91,30 @@ window.addEventListener('click', (e) => {
 });
 
 resetButton.addEventListener('click', () => {
-    if ('vibrate' in navigator) navigator.vibrate(50);
+    if (vibrationEnabled && 'vibrate' in navigator) navigator.vibrate(50);
     resetGame();
 });
+
+function updateVibrationUI() {
+    if (vibrationEnabled) {
+        vibrationToggle.classList.add('active');
+    } else {
+        vibrationToggle.classList.remove('active');
+    }
+}
+
+vibrationToggle.addEventListener('click', () => {
+    vibrationEnabled = !vibrationEnabled;
+    localStorage.setItem('vibrationEnabled', vibrationEnabled);
+    updateVibrationUI();
+    
+    if (vibrationEnabled && 'vibrate' in navigator) {
+        navigator.vibrate(50);
+    }
+});
+
+// Initial UI update
+updateVibrationUI();
 
 // ── Board Rendering ────────────────────────────────────────────────────────────
 function renderBoard() {
@@ -128,10 +151,10 @@ function executeMove(index, player) {
     board[index] = player;
     renderBoard();
 
-    if ('vibrate' in navigator) navigator.vibrate(50);
+    if (vibrationEnabled && 'vibrate' in navigator) navigator.vibrate(50);
 
     if (checkWinner()) {
-        if ('vibrate' in navigator) navigator.vibrate([100, 50, 100]);
+        if (vibrationEnabled && 'vibrate' in navigator) navigator.vibrate([100, 50, 100]);
         return;
     }
 

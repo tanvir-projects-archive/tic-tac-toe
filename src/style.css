@@ -264,15 +264,56 @@ button:active {
     transform: translateY(0);
 }
 
-#reset {
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.45rem;
+}
+
+#reset, #vibration-toggle {
     width: 44px;
     height: 44px;
     padding: 0;
-    margin: 0.45rem auto 0;
+    margin: 0;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#vibration-toggle {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: var(--text);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--glass-border);
+}
+
+#vibration-toggle.active {
+    background-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    border: none;
+}
+
+#vibration-toggle .icon-vibrate,
+#vibration-toggle .icon-silent {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#vibration-toggle.active .icon-vibrate {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+#vibration-toggle:not(.active) .icon-silent {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
 }
 
 #reset svg {
