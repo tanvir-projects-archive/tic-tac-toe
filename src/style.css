@@ -314,17 +314,14 @@ button:active {
 }
 
 #vibration-toggle {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: var(--text);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--glass-border);
-}
-
-#vibration-toggle.active {
     background-color: var(--primary);
-    color: #fff;
+    color: #fff !important;
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
     border: none;
+}
+
+#vibration-toggle:not(.active) {
+    filter: grayscale(0.2) brightness(0.95);
 }
 
 #vibration-toggle .icon-vibrate,
@@ -335,13 +332,13 @@ button:active {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#vibration-toggle.active .icon-vibrate {
+#vibration-toggle.active .icon-silent {
     opacity: 0;
     transform: scale(0.5);
     pointer-events: none;
 }
 
-#vibration-toggle:not(.active) .icon-silent {
+#vibration-toggle:not(.active) .icon-vibrate {
     opacity: 0;
     transform: scale(0.5);
     pointer-events: none;
