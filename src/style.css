@@ -106,6 +106,10 @@ h1 {
     width: 100%;
     font-family: 'Lemon Milk', sans-serif;
     user-select: none;
+    z-index: 1;
+}
+
+.custom-dropdown.open {
     z-index: 100;
 }
 
