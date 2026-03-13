@@ -17,17 +17,18 @@
     --container-width: 342px;
 }
 
-body, h1, select, button {
+html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    touch-action: none; /* Prevents scrolling and pull-to-refresh */
 }
 
 body {
     font-family: 'Lemon Milk', sans-serif;
     text-align: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
     color: var(--text);
     display: flex;
     justify-content: center;
