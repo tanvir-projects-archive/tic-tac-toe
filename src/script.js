@@ -64,7 +64,19 @@ function handleMove(index) {
 function executeMove(index, player) {
     board[index] = player;
     renderBoard();
-    if (checkWinner()) return;
+    
+    // Haptic feedback for move
+    if ('vibrate' in navigator) {
+        navigator.vibrate(50);
+    }
+
+    if (checkWinner()) {
+        // Haptic feedback for win
+        if ('vibrate' in navigator) {
+            navigator.vibrate([100, 50, 100]);
+        }
+        return;
+    }
     
     switchPlayer();
     updateTurnIndicator();
@@ -118,9 +130,39 @@ function checkWinner() {
 
 function highlightWinner(combination) {
     const boxes = document.querySelectorAll('.box');
+    const winningLine = document.getElementById('winning-line');
+    const board = document.getElementById('board');
+    
     combination.forEach(index => {
         boxes[index].classList.add('winner');
     });
+
+    if (!winningLine || !board) return;
+
+    const boardRect = board.getBoundingClientRect();
+    const box1Rect = boxes[combination[0]].getBoundingClientRect();
+    const box2Rect = boxes[combination[1]].getBoundingClientRect();
+    const box3Rect = boxes[combination[2]].getBoundingClientRect();
+
+    // Calculate center points relative to the board
+    const x1 = box1Rect.left + box1Rect.width / 2 - boardRect.left;
+    const y1 = box1Rect.top + box1Rect.height / 2 - boardRect.top;
+    const x2 = box2Rect.left + box2Rect.width / 2 - boardRect.left;
+    const y2 = box2Rect.top + box2Rect.height / 2 - boardRect.top;
+    const x3 = box3Rect.left + box3Rect.width / 2 - boardRect.left;
+    const y3 = box3Rect.top + box3Rect.height / 2 - boardRect.top;
+
+    // Line length and angle
+    const dx = x3 - x1;
+    const dy = y3 - y1;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+    // Set line styles and trigger animation
+    winningLine.style.width = `0px`;
+    winningLine.style.transform = `translate(${x1}px, ${y1}px) rotate(${angle}deg)`;
+    winningLine.style.setProperty('--line-width', `${distance}px`);
+    winningLine.classList.add('draw-line');
 }
 
 // Countdown logic
@@ -191,6 +233,12 @@ function resetGame() {
     currentPlayer = 'X';
     gameOver = false;
     messageElement.textContent = '';
+    
+    const winningLine = document.getElementById('winning-line');
+    if (winningLine) {
+        winningLine.classList.remove('draw-line');
+    }
+
     renderBoard();
     updateTurnIndicator();
 }

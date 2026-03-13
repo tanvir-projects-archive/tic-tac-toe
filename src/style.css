@@ -138,6 +138,33 @@ button:active {
     grid-gap: clamp(0.5rem, 3vw, 1rem);
     width: 100%;
     aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+#winning-line {
+    position: absolute;
+    background: var(--primary);
+    height: 6px;
+    border-radius: 3px;
+    z-index: 10;
+    pointer-events: none;
+    transform-origin: left center;
+    display: none;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+.draw-line {
+    display: block !important;
+    animation: drawLine 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes drawLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: var(--line-width);
+    }
 }
 
 .box {
@@ -165,11 +192,7 @@ button:active {
 }
 
 .box.winner {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
 }
 
 .box span {
