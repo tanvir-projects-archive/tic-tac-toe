@@ -89,6 +89,7 @@ window.addEventListener('click', (e) => {
 });
 
 resetButton.addEventListener('click', () => {
+    if ('vibrate' in navigator) navigator.vibrate(50);
     resetGame();
 });
 
