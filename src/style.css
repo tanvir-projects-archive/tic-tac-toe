@@ -87,11 +87,21 @@ h1 {
 }
 
 .player-name {
-    background: rgba(255, 255, 255, 0.4);
-    padding: 0.5rem 0.4rem;
-    font-size: clamp(0.7rem, 3vw, 0.85rem);
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.6rem 0.4rem;
+    font-size: clamp(0.8rem, 3.5vw, 0.95rem);
     text-transform: uppercase;
     border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.player-name.x-color {
+    background: rgba(255, 75, 43, 0.15);
+}
+
+.player-name.o-color {
+    background: rgba(43, 134, 255, 0.15);
 }
 
 .player-score {
