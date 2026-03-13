@@ -132,6 +132,11 @@ button:active {
     transform: translateY(0);
 }
 
+.board-container {
+    position: relative;
+    width: 100%;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -143,14 +148,16 @@ button:active {
 
 #winning-line {
     position: absolute;
-    background: var(--primary);
+    top: 0;
+    left: 0;
+    background: #000; /* Black color as requested */
     height: 6px;
     border-radius: 3px;
-    z-index: 10;
+    z-index: 20;
     pointer-events: none;
     transform-origin: left center;
     display: none;
-    box-shadow: 0 0 15px var(--primary);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .draw-line {

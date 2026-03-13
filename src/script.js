@@ -139,18 +139,18 @@ function highlightWinner(combination) {
 
     if (!winningLine || !board) return;
 
+    const boardContainer = document.querySelector('.board-container');
     const boardRect = board.getBoundingClientRect();
+    const boardContainerRect = boardContainer.getBoundingClientRect();
     const box1Rect = boxes[combination[0]].getBoundingClientRect();
     const box2Rect = boxes[combination[1]].getBoundingClientRect();
     const box3Rect = boxes[combination[2]].getBoundingClientRect();
 
-    // Calculate center points relative to the board
-    const x1 = box1Rect.left + box1Rect.width / 2 - boardRect.left;
-    const y1 = box1Rect.top + box1Rect.height / 2 - boardRect.top;
-    const x2 = box2Rect.left + box2Rect.width / 2 - boardRect.left;
-    const y2 = box2Rect.top + box2Rect.height / 2 - boardRect.top;
-    const x3 = box3Rect.left + box3Rect.width / 2 - boardRect.left;
-    const y3 = box3Rect.top + box3Rect.height / 2 - boardRect.top;
+    // Calculate center points relative to board-container
+    const x1 = box1Rect.left + box1Rect.width / 2 - boardContainerRect.left;
+    const y1 = box1Rect.top + box1Rect.height / 2 - boardContainerRect.top;
+    const x3 = box3Rect.left + box3Rect.width / 2 - boardContainerRect.left;
+    const y3 = box3Rect.top + box3Rect.height / 2 - boardContainerRect.top;
 
     // Line length and angle
     const dx = x3 - x1;
@@ -159,6 +159,9 @@ function highlightWinner(combination) {
     const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
     // Set line styles and trigger animation
+    winningLine.classList.remove('draw-line');
+    void winningLine.offsetWidth; // Trigger reflow to restart animation
+    
     winningLine.style.width = `0px`;
     winningLine.style.transform = `translate(${x1}px, ${y1}px) rotate(${angle}deg)`;
     winningLine.style.setProperty('--line-width', `${distance}px`);
