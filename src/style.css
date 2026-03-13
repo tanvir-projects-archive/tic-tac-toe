@@ -60,33 +60,33 @@ h1 {
 .scoreboard {
     display: flex;
     justify-content: space-around;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
     font-weight: 700;
 }
 
 .score {
     flex: 1;
-    padding: 0.8rem;
+    padding: 0.4rem 0.6rem;
     background: rgba(255, 255, 255, 0.5);
     border: 2px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    border-radius: 10px;
+    font-size: clamp(0.7rem, 3vw, 0.85rem);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .score span {
     display: block;
-    font-size: 1.5rem;
-    margin-top: 0.3rem;
+    font-size: 1.1rem;
+    margin-top: 0.15rem;
 }
 
 #turn-indicator {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    margin-bottom: 1.5rem;
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    margin-bottom: 0.8rem;
     font-weight: 600;
-    padding: 0.5rem;
+    padding: 0.35rem;
     border-radius: 10px;
     transition: all 0.3s ease;
 }
@@ -94,8 +94,8 @@ h1 {
 .controls {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
 }
 
 .custom-dropdown {
@@ -105,6 +105,12 @@ h1 {
     user-select: none;
     z-index: 100;
 }
+
+/* Difficulty dropdown hidden state */
+.difficulty-hidden {
+    display: none;
+}
+
 
 .dropdown-selected {
     display: flex;
@@ -303,9 +309,9 @@ button:active {
 }
 
 #message {
-    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     font-weight: 700;
-    margin-top: 1.5rem;
+    margin-top: 0.8rem;
     min-height: 1.2em;
     line-height: 1.4;
 }
