@@ -6,8 +6,7 @@ const ASSETS = [
   '../style.css',
   '../script.js',
   '../img/favicon.png',
-  '../img/icon.png',
-  '../vid/background.mp4'
+  '../img/icon.png'
 ];
 
 // Install Event - Caching Assets
