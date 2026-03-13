@@ -14,7 +14,7 @@
     --box-bg: rgba(255, 255, 255, 0.4);
     --box-border: rgba(0, 0, 0, 0.1);
     --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    --container-width: 450px;
+    --container-width: 380px;
 }
 
 body, h1, select, button {
